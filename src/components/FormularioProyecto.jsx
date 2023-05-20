@@ -11,13 +11,15 @@ function FormularioProyecto() {
     const [descripcion, setDescripcion] = useState('');
     const [fecha, setFecha] = useState('');
     const [cliente, setCliente] = useState('');
-    console.log(proyecto);
+    const [id, setId] = useState(null);
+
     useEffect(() => {
         if(params.id) {
             setCliente(proyecto.cliente)
             setDescripcion(proyecto.descripcion)
             setFecha(proyecto.fechaEntrega?.split('T')[0])
             setNombre(proyecto.nombre)
+            setId(proyecto._id)
         }
     }, [params])
 
@@ -32,11 +34,12 @@ function FormularioProyecto() {
             return
         }
 
-        await submitProyecto({nombre, descripcion, fecha, cliente})
+        await submitProyecto({nombre, descripcion, fecha, cliente, id})
         setCliente('')
         setDescripcion('')
         setFecha('')
         setNombre('')
+        setId(null)
     }
 
     return (
@@ -56,7 +59,7 @@ function FormularioProyecto() {
                 <input type="text" id="cliente" className="border w-full p-2 mt-2 placeholder-gray-400 rounded-md" placeholder="Nombre Cliente" value={cliente} onChange={(event) => setCliente(event.target.value)} />
             </div>
 
-            <input type="submit" value={'Crear Proyecto'} className="bg-sky-600 w-full p-3 uppercase font-bold text-white rounded cursor-pointer hover:bg-sky-800 transition-colors" />
+            <input type="submit" value={`${params.id  ? 'Editar' : 'Crear'}`} className="bg-sky-600 w-full p-3 uppercase font-bold text-white rounded cursor-pointer hover:bg-sky-800 transition-colors" />
 
         </form>
     );

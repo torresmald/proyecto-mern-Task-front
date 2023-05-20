@@ -19,7 +19,6 @@ function EditarProyecto() {
                     <FormularioProyecto />
                 </div>
             </>
-
         )
 
 
