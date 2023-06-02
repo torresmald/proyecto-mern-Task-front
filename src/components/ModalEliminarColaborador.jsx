@@ -2,12 +2,12 @@ import { Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import useProyectos from '../hooks/useProyectos'
 
-const ModalEliminarTarea = () => {
-    const { handleSetEliminarTarea, modalEliminarTarea, eliminarTarea } = useProyectos()
+const ModalEliminarColaborador = () => {
+    const { handleSetModalEliminarColaborador, modalEliminarColaborador, eliminarColaborador, colaborador } = useProyectos()
 
     return (
-        <Transition.Root show={modalEliminarTarea} as={Fragment}>
-            <Dialog as="div" className="fixed z-10 inset-0 overflow-y-auto" onClose={handleSetEliminarTarea}>
+        <Transition.Root show={modalEliminarColaborador} as={Fragment}>
+            <Dialog as="div" className="fixed z-10 inset-0 overflow-y-auto" onClose={handleSetModalEliminarColaborador}>
                 <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
                     <Transition.Child
                         as={Fragment}
@@ -44,7 +44,7 @@ const ModalEliminarTarea = () => {
                                 <button
                                     type="button"
                                     className="bg-white rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                                    onClick={handleSetEliminarTarea}
+                                    onClick={handleSetModalEliminarColaborador}
                                 >
                                     <span className="sr-only">Cerrar</span>
                                     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
@@ -62,10 +62,10 @@ const ModalEliminarTarea = () => {
                                 </div>
                                 <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
                                     <Dialog.Title as="h3" className="text-lg leading-6 font-bold text-gray-900">
-                                        Eliminar Tarea
+                                        Eliminar Colaborador
                                     </Dialog.Title>
                                     <div className='mt-2'>
-                                        <p className='text-sm text-red-500 font-bold'>Una Tarea Eliminada no se podrá recuperar</p>
+                                        <p className='text-sm text-red-500 font-bold'>Un Colaborador eliminado no se podrá recuperar</p>
                                     </div>
                                 </div>
                             </div>
@@ -73,7 +73,7 @@ const ModalEliminarTarea = () => {
                                 <button
                                     type="button"
                                     className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-10 py-4 bg-red-600 text-base font-bold text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm"
-                                    onClick={eliminarTarea}
+                                    onClick={() => eliminarColaborador(colaborador)}
                                 >
                                     Eliminar
                                 </button>
@@ -86,4 +86,4 @@ const ModalEliminarTarea = () => {
     )
 }
 
-export default ModalEliminarTarea
+export default ModalEliminarColaborador
